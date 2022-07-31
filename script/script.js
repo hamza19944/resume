@@ -72,3 +72,8 @@ function asideSectionToggle() {
         allSections[i].classList.toggle("open")
     }
 }
+
+// open in new tab
+function openWindow(url){
+    window.open(url, "_blank").focus
+}
