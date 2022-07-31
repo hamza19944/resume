@@ -647,6 +647,7 @@ h3.my-prof{
 .contact .contact-form .btn{
     height: 50px;
     padding: 0 50px;
+    cursor: pointer;
 }
 /* media */
 @media (max-width: 1199px){
@@ -696,3 +697,18 @@ h3.my-prof{
         max-width: 100%;
     }
 }
+/* thanks starts */
+.thanks .container{
+    height: 100%;
+}
+.thanks .row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20% 0;
+}
+.thanks .row h3 span{
+    color: var(--skin-color);
+    font-size: 30px;
+}
+/* thanks ends */
