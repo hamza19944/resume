@@ -698,6 +698,16 @@ h3.my-prof{
         max-width: 100%;
     }
 }
+@media (max-width: 558px){
+    .personal-info .row{
+        justify-content: center;
+    }
+    .about .about-content .personal-info .info-item{
+        flex: 0 0 70%;
+        max-width: 70%;
+
+    }
+}
 /* thanks starts */
 .thanks .container{
     height: 100%;
