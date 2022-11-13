@@ -1,9 +1,6 @@
 let typed = new Typed(".typing", {
-<<<<<<< HEAD
     strings:[" ", "Web Developer", "FrontEnd Developer"],
-=======
     strings:["", "Web Developer", "Frontend Developer"],
->>>>>>> 06d5702660febcb9bb9445d10b00b6a4fb95e15a
     typeSpeed: 100,
     BackSpeed: 60,
     loop: true
