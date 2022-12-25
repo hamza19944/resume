@@ -4,7 +4,8 @@ const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 
 dotenv.config()
-const password = process.env.PASS
+const {password, port, host} = process.env
+
 const app = express();
 app.use(express.static("public"));
 app.use(bodyParser.json())
@@ -23,7 +24,7 @@ const transporter = nodeMailer.createTransport({
 });
 
 
-app.post("/text-mail", (req, res) => {
+app.post("/public/text-mail", (req, res) => {
     const {name, email, subject, message} = req.body;
     console.log(name, email, subject, message);
     const mailData = {
@@ -35,10 +36,12 @@ app.post("/text-mail", (req, res) => {
     };
     transporter.sendMail(mailData, (error, info) => {
         if(error) console.log(error);
-        res.redirect("thanks.html")
+        res.redirect("public/thanks.html")
     })
 })
-
-app.listen(3000, () => {
+app.get(host, (req, res) => {
+    res.render("public/index.html")
+})
+app.listen(host, () => {
     console.log("working on log 3000");
 })
