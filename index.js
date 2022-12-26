@@ -4,27 +4,28 @@ const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 
 dotenv.config()
-const {password, port, host} = process.env
+const {password, host, port} = process.env
 
 const app = express();
 app.use(express.static("public"));
 app.use(bodyParser.json())
 
 app.use(bodyParser.urlencoded({extended: false}));
-app.set("view engine", "ejs");
 
 const transporter = nodeMailer.createTransport({
-    port: 465,
-    host: "smtp.gmail.com",
+    service: 'gmail',
     auth: {
-        user: "hamza.elmansy94@gmail.com",
-        pass: password
-    },
-    secure: true,
+        type: 'OAuth2',
+        user: process.env.MAIL_USERNAME,
+        pass: process.env.MAIL_PASSWORD,
+        clientId: process.env.OAUTH_CLIENTID,
+        clientSecret: process.env.OAUTH_CLIENT_SECRET,
+        refreshToken: process.env.OAUTH_REFRESH_TOKEN
+    }
 });
 
 
-app.post("/public/text-mail", (req, res) => {
+app.post("/public/mail", (req, res) => {
     const {name, email, subject, message} = req.body;
     console.log(name, email, subject, message);
     const mailData = {
@@ -36,12 +37,12 @@ app.post("/public/text-mail", (req, res) => {
     };
     transporter.sendMail(mailData, (error, info) => {
         if(error) console.log(error);
-        res.redirect("public/thanks.html")
+        else console.log("message is sent");
     })
 })
-app.get(host, (req, res) => {
+app.get(port, (req, res) => {
     res.render("public/index.html")
 })
-app.listen(host, () => {
-    console.log("working on log 3000");
+app.listen(port, () => {
+    console.log("working on log: " + port);
 })

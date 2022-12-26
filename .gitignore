@@ -5,3 +5,4 @@ resume-geo.docx
 resume-geo.pdf
 .env
 node_modules
+.vercel
