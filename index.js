@@ -25,7 +25,7 @@ const transporter = nodeMailer.createTransport({
 });
 
 
-app.post("/public/mail", (req, res) => {
+app.post("/mail", (req, res) => {
     const {name, email, subject, message} = req.body;
     console.log(name, email, subject, message);
     const mailData = {
@@ -37,7 +37,7 @@ app.post("/public/mail", (req, res) => {
     };
     transporter.sendMail(mailData, (error, info) => {
         if(error) console.log(error);
-        else console.log("message is sent");
+        else res.redirect("thanks.html");
     })
 })
 app.get(port, (req, res) => {
