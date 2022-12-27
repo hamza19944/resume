@@ -38,11 +38,13 @@ app.post("/mail", (req, res) => {
     };
     transporter.sendMail(mailData, (error, info) => {
         if(error) console.log(error);
-        else res.redirect("thanks.html");
+        else{
+            res.redirect("index.html#about")
+        }
     })
 })
-app.get(port, (req, res) => {
-    res.render("public/index.html")
+app.get("/", (req, res) => {
+    res.render("index.html")
 })
 app.listen(port, () => {
     console.log("working on log: " + port);
