@@ -4,7 +4,8 @@ const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 
 dotenv.config()
-const {password, host, port} = process.env
+const {password, host} = process.env
+const port = process.env.PORT || 3000
 
 const app = express();
 app.use(express.static("public"));
@@ -33,7 +34,7 @@ app.post("/mail", (req, res) => {
         to: email,   // list of receivers
         subject: subject,
         text: message,
-        html: `<b>Hey ${name ? name : "There"}! </b><br> This is our first message sent with Nodemailer<br/>`,
+        html: `<b>Hello ${name ? name : "There"}! </b><br> we will get in touch as soon as possible<br/>`,
     };
     transporter.sendMail(mailData, (error, info) => {
         if(error) console.log(error);
